@@ -1,17 +1,33 @@
 \documentclass[18pt, a4paper, oneside]{memoir}
+\setcounter{tocdepth}{2}
 \usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 \title{How to RICE Linux}
 \author{Nicola Bruno}
 \date{\today}
+
+%\includeonly{chapter_3}
 
 \begin{document}
 
 \maketitle
 %here goes an image
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{rice_bowl}
+\end{figure}
 
+\pagebreak
 
-\input{chapter_1}
+\tableofcontents
 
-\input{chapter_2}
+\include{chapter_1}
+
+\include{chapter_2}
+
+\include{chapter_3}
 
 \end{document}

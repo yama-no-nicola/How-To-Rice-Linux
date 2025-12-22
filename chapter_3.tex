@@ -1,0 +1,40 @@
+\chapter{Base Configuration}
+After listing every possible component, it's time to make a working configuration for each one. Here there will be basic configurations for a working setup, without styling.
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{The Operating System}
+I will talk about the 3 main categories of OS I mentioned before, so Debian, Arch, and Fedora
+\vspace{\baselineskip}
+
+I do not like mixing Operating Systems with Desktop Enviroment that they do not ship with, so for premade DEs, just use whatever is suggested by the distro
+
+\subsection{Debian}
+
+Since Debian does not get the latest packages, if you use something like KDE or GNOME, you run the risk of having issues with packages. I recommend using MATE or XCFE to keep it stable.
+\\For Stacking Window Managers, go with \emph{i3wm} if you want X11, or \emph{sway} if you want Wayland.
+
+\subsection{Arch}
+    I believe that if you're using something Arch based, like EndeavurOS or Manjaro, you should get the KDE Plasma version for a premade DE.
+\\Instead if you want a Window Manager go with Sway or Hyprland
+
+\subsection{Fedora}
+    Fedora already ships with KDE Plasma, so use that.
+\\For SWMs use Sway or i3, since they both are in the official repo
+   
+\footnote{Remember that every Linux distro is modular, so if you want to mix and match pieces, feel free to do so. It's not going to change how to customize everything, so you can still follow this guide or the official documentation.}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Display Server}
+Choosing your display server dictates most of the choices going forward, so we need to get the right one.
+
+\subsection{X11}
+X11 has been the Linux standard for more than 30 years, and it has proven itself more than once during this time. It has exellent compatibility with older applications and games as well. It allows running graphical apps remotely and it has a vast documentation and extensive troubleshooting resources. It has screen sharing and window recording that just works and is reliable on basically every system. It also has better support for specialized hardware and specific use cases.
+
+\vspace{\baselineskip}
+
+However, since it's so old, it has and outdated architecture and hase a few security vulnerabilities. It has poor multi-monitor support, especially on more modern displays with mixed DPI and various refresh rates. It's inconsistent with touchpads gestures on laptops and has very obvious screen tearing issues withot a compositor. But most importantly it's not developed anymore, it's just maintained, so don't expect new features or reworks of the old architecture.
+
+\subsection{Wayland}
+Wayland on the other hand, has a modern security model with application isolation, it has smooth animations and better performance, having way less latency than its predecessor. It has exellent multi monitor compatibility and support per-monitor scaling. It has native gestures and touch input, it's designed to not have screen tearing issues, and most importantly it's actively in development and it's constantly being improved

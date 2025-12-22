@@ -75,79 +75,276 @@ Our choices are between Wayland and X11, since we are using Linux. I personally 
 
 \subsection{The window manager}
 This is the computer's interior designer. It decides where the windows appear on screen, how they look, what happens when you drag, resize or close them, and if the windows stack automatically or not.
+If you choose a ready Desktop Enviroment, like GNOME or KDE Plasma, this will come with a whole lot of other stuff needed for the system's functionalities. However, if you choose a \emph{tiling window manager}, you will have only that, and you will have to install everyhing else manually.
+The most widespread are: 
+\begin{itemize}
+    \item Desktop Window Manager(DWM) - Windows' built in WM
+    \item Quartz - MacOS built in WM
+    \item Mutter - GNOME's built in WM
+    \item KWin - KDE Plasma's built in WM
+\end{itemize}
+But the ones we are actually interested in are the \textbf{\emph{Tiling Window Managers}}, that have a specific behaviour built into them. These WMs automatically align the windows you open on a grid, and allocate the same space dynamically to every window. %image here
+The most common Tiling WMs are:
+\begin{itemize}
+        %Add hyperlinks to every WM
+    \item i3 - the most widespread Stacking WM. It's the classic and it uses X11, with no plans to move to Wayland. It's very reliable and the developers say they will be maintaining it as long as there will be users. It's really fast and lightweight, since it's written in C
+    \item awesome -  awesome is a heavily extensible WM written in C and Lua. Its selling points are a fast and small codebase, a really well documented source code, large implementation capability, no floating windows and more
+    \item Sway - it's similar to i3, but it's wayland compatible, and most of the stuff written for i3 are also compatible with sway
+    \item Hyprland - One of the newest WMs out there. It's modern, well documented, good looking, and wayland compatible. It also contains its own compositor and has a suite of tools tailored specifically for Hyprland to have every functionality a PC needs
+    \item Niri - A scrollable WM for Wayland. It arranges windows on a endless strip going to the right, and it never resizes an existing window, since it just adds it to the strip
+\end{itemize}
+I personally use Hyprland, since that fit my use case better than everything else, but every option is valid here. Just remember that if you do not use Hyprland, you will have to install a compositor manually
 
 \subsection{The bar}
-This is your car's dashboard, it tells you the time, your battery level, and more information
+It's not hard to understand why you need a bar on your desktop. It holds ready to see information, like the clock or what workspace you're on. It can also be configured to hold whatever you need. For example, I have a special button to play the first 3 seconds of the opening to \emph{Orb - On the movement of the Earth}, bass boosted and distorted.
+Every premade DE will have its bar, while WMs may have one, but it does not always fit our usecase. Here are the most common ones:
+\begin{itemize}
+    \item i3/swaybar - Respectively, i3's and sway's default status bar
+    \item Waybar - A 3rd party bar compatible with basically every WM out there. Highly customizable with JSONC for configuration and GTK-CSS for styling
+    \item Polybar - Similar to Waybar, but X11 compatible
+\end{itemize}
 
 \subsection{The application launcher}
-This is pretty self-explainatory, it launches applications for you instead of having to dig through your folders to find the program you need
+Again, this in probably included in your DE of choice if you downloaded one. If you have a SWM, you can either use:
+\begin{itemize}
+    \item rofi - The most versatile launcher on this list. As of 2025 it has finally gotten Wayland support
+    \item wofi - rofi fork for wayland
+    \item dmenu - The basic launcher that inspired every other. Fast, lightweight and customizable
+    \item KRunner - KDE Plasma's build in launcher
+\end{itemize}
 
 \subsection{The terminal emulator}
-This is the part where you can feel like a \emph{supaa hackaa}, by typing commands in text form instead of clicking buttons with your mouse
+This is the part where you can feel like a \emph{supaa hackaa}, by typing commands in text form instead of clicking buttons with your mouse. There is a terminal emulator for every taste out there, and they're very similar. Here are the outstanding ones:
+\begin{itemize}
+    \item Alacritty - GPU accelerated terminal emulator written in rust
+    \item Kitty - GPU accelerated, true color terminal emulator. Supports plugins for exended functionality
+    \item GNOME Terminal/Konsole - Default terminal on GNOME and KDE Plasma. Enough to get the job done, not very customizable
+\end{itemize}
 
 \subsection{The shell}
-This is the language of the terminal, and also the translator
+This is the language of the terminal, and also the translator. It's basically a programming language, and can be used both to communicate with the terminal, and to write scripts for automated behavior, since a shell script is basically a list of commands. Here are the most used shells:
+\begin{itemize}
+    \item Bash - Bourne Again SHell, it is the most widely used shell on Unix like systems
+    \item Zsh - Z Shell, it's Apple's shell. Basically bash with some stuff added to it
+    \item Fish - Friendly Interactive SHell. Modern shell with syntax highlightning and autosuggestions. But no POSIX though.
+    \item Dash - Minimal POSIX-compliant shell. Very fast for scripts, but it was better in the past, since bash was not optimal
+    \item PowerShell - Microsoft's shell for Windows. It is abysmal
+\end{itemize}
+Bash will forever be the best for general purpose, since is the most portable one and it's the default everywhere.
 
 \subsection{The file manager}
-This is the file cabinet of the computer. It allows you to navigate files, open them, delete them, create more, and so on
+This is the file cabinet of the computer. It allows you to navigate files, open them, delete them, create more, and so on. We can just steal them from ready made DEs:
+\begin{itemize}
+    \item Nautilus - GNOME Files, clean and simple interface
+    \item Dolphin - KDE's default, highly customizable
+    \item Thunar - XFCE's default, very lightweight
+    \item Nemo - Cinnamon's default, a fork of Nautilus
+\end{itemize}
+There are some more, but I do not have experience on them, so if there do not seem good enoughto you, you're free and encouraged to dig around for more File Managers
 
 \subsection{The notification deamon}
-This sends you notifications when stuff happens, like when your music player skips a song, or if your battery is dying
+This sends you notifications when stuff happens, like when your music player skips a song, or if your battery is dying. There are a few options we can pick from:
+\begin{itemize}
+    \item Dunst - Very popular notification daemon, due to its lightweight nature. Text based configuration, low resource usage, and icon support make it a great option
+    \item Mako - The go-to choice for Wayland compositors, especially on Sway
+    \item notification-daemon - The original GNOME notification daemon. Once the standard, now widely replaced by GNOME's built in GNOME Shell notification system
+    \item KDE Plasma notification system - Very self explainatory, it's KDE's build in ND
+    \item deadd-notification-center - A very popular notification daemon among the users who crave functionality above all
+\end{itemize}
 
 \subsection{The compositor}
-Now we get into prime RICE territory, this is the program responsible for all of the cool effects on your desktop, like shadows, blur, transparency, and animations
+Now we get into prime RICE territory, this is the program responsible for all of the cool effects on your desktop, like shadows, blur, transparency, and animations. Some WMs already have their own, and all ready made DEs have a built in one, but not every WM has it, so:
+\begin{itemize}
+    \item wlroot-based compositors like:
+        \begin{itemize}
+            \item Sway - i3 compatible tiling compositor
+            \item Hyprland - dynamic tiling \emph{with the looks}
+            \item river - dynamic tiling, very lightweight
+            \item Wayfire - 3D effects and animations
+        \end{itemize}
+    \item Picom - Standalone compositor for X11, supports transparency, blur, shadows, fading, and is easy to customize
+    \item Xcompmgr - Older, simpler X11 compositor
+\end{itemize}
 
-\subsection{The wallaper}
-If you do not know what a wallpaper is, maybe you should consider a career on an oil rig and never touch a computer again
+\subsection{The wallpaper}
+The wallpaper is basically just an image that's in an untouchable layer behind everything else, and it needs to be loaded and rendered on the screen. WMs do not have this functionality by default, so we need a Wallpaper manager:
+\begin{itemize}
+    \item feh - lightweight command line image viewer that can set wallpaper. X11 compatible
+    \item nitrogen - GUI wallpaper setter with multi monitor support. X11 compatible
+    \item swaybg - Wayland wallpaper tool for wlroots compositors
+    \item hyprpaper - Hyprland wallpaper daemon
+    \item xwallpaper - minimal X11 wallpaper setter\\
+\\These are static wallpaper setters, you can als have dynamic ones:
+    \item Wallpaper Engine - popular on Steam, has extensive community and basically endless wallpapers to choose from. It can work on Linux, but it's not officially supported, so I do not recommend it
+    \item Komorebi - animated wallpaper for Linux
+    \item mpvpaper - uses mpv to play videos as wallpapers. Wayland compatible
+    \item xwinwrap - wrapper to set animated wallpapers on X11
+    \item Hydrapaper - multi monitor wallpaper manager with a GUI
+\end{itemize}
 
 \subsection{The color scheme}
-This is important if you want to have a cohesive theme all around your pc. You can go for a monochrome setup, or a really discordant palette with crazy colors and bright accents
+This is important if you want to have a cohesive theme all around your pc. You can go for a monochrome setup, or a really discordant palette with crazy colors and bright accents.
+For this we will need some color theory, but first of all, let's pick a color. You do not have to do this, since there are a million ways to choose a color scheme, but this is a simple approach to it. After picking a color, we select either analogous colors, or complementary colors. You can also go the triadic way, by picking equispaced color on the color wheel, or go monochrome and alter just the saturation and lightness. My suggestion is to pick the accent color(s), and the rest of the UI will be neutral colors, so blacks, grays, and whites. If you care about your eyes while working on your PC, you should limit your palette to a maximum of 2 main colors, and 2 accent colors. And obvious colors for everything that's not supposed to sit on the screed. i.e. red for errors, yellow for warnings, green for success. There are many websites that allow to build your palette and view both the HEX values and the rgba values, as well as every color scheme under the sun
+%here goes an image of a colorwheel with highlighted complimentary and adjacent colors
 
 \subsection{The fonts}
-Please tell me that you know what a font is
+To have a cohesive setup, you need custom fonts. Of course you can have the same font for everything, but that can get confusing to read. I suggest having:
+\begin{itemize}
+    \item a Serif or Sans Serif font for the UI itself
+    \item another Serif as a backup and for stuff like window titles and other things that may need differentiation
+    \item a monospace font for the terminal and your text editor of choice
+\end{itemize}
+All of this can be eiter found on NerdFonts or just googling "cool fonts"
 
 \subsection{The audio system}
 This controls everything that relates to audio. Volume levels, which program makes sound, where is outputted, where is inputted and so on
+There are two layers to the audio system: the \textbf{driver} and the \textbf{sound server}:
+Drivers:
+\begin{itemize}
+    \item ALSA (Advanced Linux Sound Architecture) - Kernel level audio system. Always present on modern Linux systems. It has some limitations, like accessing only one sound card at a time, but it's stable and there are workarounds to its limits
+    \item OSS (Open Sound System) - ALSA's predecessor, now largely obsolete since ALSA is better in basically every way
+\end{itemize}
+Sound Servers:
+\begin{itemize}
+    \item PulseAudio - The most common sound server for Linux. It interprets your input to ALSA and provides network audio, application specific volume control, automatic device switching, and can allow multiple applications to play audio at once. It's designed for everyday users, but it has higher latency than its friends
+    \item PipeWire - The replacement for PulseAudio that can also handle video. It can replace PulseAudio, JACK, it can handle Wayland screen sharing and it has lower latency when compared to PulseAudio. It is becoming the new standard on Linux based systems
+    \item JACK (JACK Audio Connection Kit) - Designed for professional audio work, it has very low latency, and lets you route audio between applications in many ways. It's overkill for normal desktop users, but it's amazing if you are a musician or an audio producer
+\end{itemize}
 
 \subsection{The music player}
-Everybody listens to music, and you need a way to play it
+Everybody listens to music, and you need a way to play it. There are many options, and probably you already know some of them:
+
+\begin{itemize}
+
+    \item Terminal based music players -pick one of these if you want a lightweight experience
+        \begin{itemize}
+    \item mpd (Music Player Daemon) - Runs as a background service and it's controlled by various clients. Very efficient and great for servers. It stores your music on its own database
+
+    \item moc (Music on Console) - Another terminal player with a two panel interface similar to file managers
+
+        \end{itemize}
+
+    \item Simple GUI players - These are your basic music players you're used to 
+        \begin{itemize}
+    \item Audatious - Looks like Winamp. Lightweight, just plays music without library managment stuff
+
+    \item Rhythmbox - My glorious, beloved music player. It's GNOME's default and it has support for music, podcasts, internet radio, and can be expanded with plugins
+        \end{itemize}
+
+    \item Advanced music players - For more hardcore music enjoyers
+        \begin{itemize}
+    \item Amarok - KDE's default player with tons of features, statistics, dynamic playlists, and much more
+    
+    \item Cantata - GUI frondend for mpd
+        \end{itemize}
+
+    \item Streaming clients - If you do not care for a local library of downloaded songs
+        \begin{itemize}
+    \item Spotify - Official client available for Linux, but I suggest a custom one for maximum customization
+
+    \item Tauon Music Box - Modern player with streaming service support and nice visuals
+        \end{itemize}
+
+    \item Minimalistic - If you want the most lightweight, no bullshit approach
+        \begin{itemize}
+    \item mpv - Technically a video player, but it's amazing for audio. Command line focused and highly customizable
+        \end{itemize}
+        
+\end{itemize}
+
 
 \subsection{System monitor}
 This is useful for diagnostics. Which process is consuming the most resources, at which temperature a said component is running
+\begin{itemize}
+    \item Built in command line tools
+        \begin{itemize}
+            \item top/htop - Real time process and resource monitor. htop is just better top
+            \item btop/bpytop - Modern and visually appealing htop alternative
+            \item iostat - Disk I/O statistics
+            \item vmstat - Virtual memory statistics
+            \item netstat - Network connection monitoring
+            \item iotop - Monitor disk I/O by process
+        \end{itemize}
+    \item GUI applications
+        \begin{itemize}
+            \item GNOME system monitor - Default on GNOME DEs
+            \item KSysGuard/Plasma System Monitor - Default on KDE Plasma
+            \item Conky - Lightweight, highly customizable system monitor written in Lua that displays on the desktop
+        \end{itemize}
+    \item Advanced monitoring
+        \begin{itemize}
+            \item Netdata - Real time performance monitoring with a web interface
+            \item Grafana \& Prometheus - Enterprise level monitoring
+            \item Zabbix - Comprehensive monitoring platform for servers and networks
+            \item Nagios - Infrastruture monitoring tool
+        \end{itemize}
+\end{itemize}
 
 \subsection{The lockscreen}
 You need this if you want to walk away from your computer and not have anybody mess with it while you're gone
+\begin{itemize}
+    \item i3clock-color - A fork of i3clock with more customization
+    \item swaylock - Clean and simple lockscreen for Wayland systems
+    \item xsecurelock - Security focused lockscreen
+    \item slock - Minimalist lockscreen. Great if you want a minimal experience
+    \item Hyprlock - Hyprland tailored lockscreen
+\end{itemize}
 
 \subsection{The power menu}
 This allows you to exit your computer in various ways without using the scary terminal. Shutdown, Reboot, Logout, and Sleep are the main modes
+The most simple way is to write your own script for your application launcher, but you can also install something ready made, like \emph{rofi-power-menu}. My suggestion is to write your own basic script and make a custom module on the status bar that runs it when clicked. You can also omit this entirely and use a keybind, or just kill your pc from the terminal directly.
 
 \subsection{Screenshots}
-You need a way to take screenshots
+You need a way to take screenshots, may it be for sharing what you're seeing, or any other possible need you could have for a screenshot. These are the most common ones:
+\begin{itemize}
+    \item flameshot - Interactive selection with annotations, arrows, and text. It also has a GUI.
+    \item maim - Simple and scriptable screenshot manager
+    \item grim - Wayland native screenshot tool
+    \item hyprshot - Hyprland tailored screenshot tool
+\end{itemize}
 
 \subsection{Clipboard manager}
 This remembers what you copy. Not just the last thing, everything you CTRL+C stays here
+        \begin{itemize}
+            \item clipmenu - dmenu based interface, great for minimal setups
+            \item copyq - Feature rich with a GUI
+            \item clipcat - Rust based clipboard manager with image support
+            \item greenclip - Lightweight rofi based clipboard manger
+            \item cliphist - Wayland native clipboard manager
+            \item clipster - Python based clipboard manager
+        \end{itemize}
 
 \subsection{Configuration Files}
 This is what you're here for. The files that tell the computer what to do and what dress does in need to wear while doing it
+Every piece of your system has a configuration file somewhere in your system. Usually they're inside /etc or /usr/share, but they may be elsewhere. Consult the official documentation for the software of interest, and copy that inside a folder with the same name inside ~/.config, so that if the software updates your configurations are not affected, and if you break somethin, the program can load the default config file
 
 \subsection{Dotfile Managment}
-You may fuck something up real bad while learning to rice. It is a good idea to use a backup system so you can return to an old version of your files without needing to rewrite everything. Just use git
+                You may fuck something up real bad while learning to rice. It is a good idea to use a backup system so you can return to an old version of your files without needing to rewrite everything. There are many ways to do this, but the best way will always be \emph{git}. I also suggest uploading your dotfiles to a remote server like GitHub or similar, so that you can share your dotfiles with other people and among many systems
 
 \subsection{Miscellaneous cool stuff}
 Its not a true RICE if you do not have random stuff that does nothing but look cool
+Usually this is done with CLIs. %add a list of cool stuff here
 
 \subsection{Browser}
-You gotta go on the internet to google everything you do not know or remember
+If you want to surf the web you need a browser. Use whatever you're comfortable with. I've always used Firefox, but I switched to Waterfox since it has a bit more security.
 
 \subsection{Application Theming}
-Isn't it just the worst when you have your beautiful system with the perfect colorscheme, but every program you open has its own? Well, change that
+Isn't it just the worst when you have your beautiful system with the perfect colorscheme, but every program you open has its own? Well, change that! Usually you can just find the GUI framework default theme online. Just copy that inside ~/.config and customize it to match the rest of the system.
 
 \subsection{Scripts and Automation}
-It is very useful to add custom scripts to your pc so that it better suits your needs
+It is very useful to add custom scripts to your pc so that it better suits your needs. Status bar modules with custom behavior, custom tools to optimize your workflow. The sky is the limit here.
 
 \subsection{Login Manager}
-Also known as the greeter screen, it allows you to login as a user with your password and which desktop do you want to use
+Also known as the greeter screen, it allows you to login as a user with your password and which desktop do you want to use. There are a couple of different options:
+                \begin{itemize}
+                    \item lightdm - Lightweight and flexible
+                    \item sddm - Default on KDE Plasma, great Wayland support, cool themes
+                    \item gdm - Default on GNOME, heavier on the RAM, best Wayland integration
+                    \item ly - Extremely minimal, runs inside the terminal. Basically no bloat
+                    \item xinit/startx - No login manager. Just type startx after logging into console. Ultimate minimal setup. Can be configured by editing .xinitrc
+                \end{itemize}
 
 \section{Going Forward}
 Now that we've extablished every part of the system and what does it do, it's time to do some customization
+
 

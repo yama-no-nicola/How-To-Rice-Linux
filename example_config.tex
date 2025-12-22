@@ -1,0 +1,68 @@
+\chapter{Basic structure}
+Before we start customizing the colors and shapes of the UI, we need to have a UI. To do this, we will be assembling the pieces of the system that we talked about in the previous chapter
+
+\section{What do we need}
+To have a starter setup we do not need much:
+\begin{itemize}
+    \item Operating System 
+    \item Greeter screen
+    \item Display server
+    \item Window manager
+    \item Status bar
+    \item Terminal emulator
+    \item Compositor
+    \item Application launcher
+    \item Wallpaper
+    \item File manager
+\end{itemize}
+
+\vspace{\baselineskip}
+
+This will be just an example, the procedure is the same for every component you may choose.
+
+\vspace{\baselineskip}
+
+We're gonna be using \emph{Arch Linux as our OS}, \emph{ly as the greeter screen}, \emph{Wayland as the display server}, \emph{Hyprland as window manager and compositor}, \emph{Waybar as the status bar}, \emph{Kitty as the terminal emulator}, \emph{wofi as the application launcher}, \emph{Hyprpaper as the wallpaper manager}, and \emph{Nautilus as the File Manager}
+Everything can be easily installed with Arch's package manager: \emph{pacman}
+
+\pagebreak
+
+\subsection{Hyprland base config}
+After installing everything we need to setup everything so that it syncs with everything else. First of all we open \textbf{hyprland.conf} and set the hyprland variables to our pieces. This can be done by changing the \$something lines so that they match our components.
+%insert snippets of code here
+
+Now that we have the variables set up, we change the keybinds to our liking. The default \$mainMenu key on Hyprland is the Windows key, also known as the Super key, this can be easily changed by following the commented lines
+%insert code here
+With the menu key set, we move to the custom keybinds, like the terminal, file manger and application launcher, which is a very simple process of entering the key combo and the desired effect.
+
+\subsection{Waybar config}
+Now that we have a usable setup we move onto the status bar. To make this process easier, make a custom keybind that realods the bar %code here
+Let's go inside the Waybar configuration directory, whose path is ~/.config/waybar/. Inside here there should be two files: a config file, and a style.css file. If there are none, create them. For now, we focus on the config file.
+
+\vspace{\baselineskip}
+
+The waybar config file is a JSON file subdivided in two main parts:
+\begin{itemize}
+    \item the bar itself, where you decide which modules go where
+    \item the module declarations, where you decide what the module contain and their behavior
+\end{itemize}
+
+You can find a list of available modules on the wiki, and you can also make custom ones. To do this you just make a module called "custom/something" and set the behavior inside. Then just declare it inside the custom module inside the bar section.
+
+\vspace{\baselineskip}
+
+To have a nice configuration that works for now we will place whe "hyprland/workspaces" module on the left, "clock"in the middle, and "hyprland/window", "network", and "battery" on the right.
+
+We are also going to set the height of the bar to 34px and its place at the top of the screen.
+
+\subsection{Application launcher}
+The application launcher has a similar setup to Waybar. For now, just use the default config file.
+
+\subsection{Wallpaper}
+Every Hyprsomething configuration file is inside ~/.config/hypr/, so let's go look at the hyprpaper.conf and use the load function to load our image and then use it as the wallpaper
+
+\subsection{Terminal Emulator}
+
+
+
+
