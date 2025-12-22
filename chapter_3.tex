@@ -6,7 +6,26 @@ After listing every possible component, it's time to make a working configuratio
 \section{The Operating System}
 I will talk about the 3 main categories of OS I mentioned before, so Debian, Arch, and Fedora
 \vspace{\baselineskip}
+%TODO Fix the pictures, they look like shit
+\begin{figure}[ht]
+    \centering
 
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{debian}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{arch}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{redhat}
+    \end{subfigure}
+\end{figure}
+ 
 I do not like mixing Operating Systems with Desktop Enviroment that they do not ship with, so for premade DEs, just use whatever is suggested by the distro
 
 \subsection{Debian}
@@ -29,6 +48,20 @@ Since Debian does not get the latest packages, if you use something like KDE or 
 \section{Display Server}
 Choosing your display server dictates most of the choices going forward, so we need to get the right one.
 
+\begin{figure}[ht]
+    \centering
+
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{x11}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{wayland}
+    \end{subfigure}
+\end{figure}
+
 \subsection{X11}
 X11 has been the Linux standard for more than 30 years, and it has proven itself more than once during this time. It has exellent compatibility with older applications and games as well. It allows running graphical apps remotely and it has a vast documentation and extensive troubleshooting resources. It has screen sharing and window recording that just works and is reliable on basically every system. It also has better support for specialized hardware and specific use cases.
 
@@ -37,4 +70,124 @@ X11 has been the Linux standard for more than 30 years, and it has proven itself
 However, since it's so old, it has and outdated architecture and hase a few security vulnerabilities. It has poor multi-monitor support, especially on more modern displays with mixed DPI and various refresh rates. It's inconsistent with touchpads gestures on laptops and has very obvious screen tearing issues withot a compositor. But most importantly it's not developed anymore, it's just maintained, so don't expect new features or reworks of the old architecture.
 
 \subsection{Wayland}
-Wayland on the other hand, has a modern security model with application isolation, it has smooth animations and better performance, having way less latency than its predecessor. It has exellent multi monitor compatibility and support per-monitor scaling. It has native gestures and touch input, it's designed to not have screen tearing issues, and most importantly it's actively in development and it's constantly being improved
+Wayland on the other hand, has a modern security model with application isolation, it has smooth animations and better performance, having way less latency than its predecessor. It has exellent multi monitor compatibility and support per-monitor scaling. It has native gestures and touch input, it's designed to not have screen tearing issues, and most importantly it's actively in development and it's constantly being improved.
+
+\vspace{\baselineskip}
+
+However, some applications, especially older ones, still have compatibility issues, screen sharing can be inconsisten, there is no native network transparency, some features are still being implemented and different compositors yield different results that not always corresponds to the desired output.
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Window Manager}
+Now that we've chosen our display server, it's time to choose our window manager. Full desktop enviroment already have their own, so I will not be mentioning stuff like KWin or Mutter.
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{kde}
+        \caption{This is a stacking window manager, in this case KDE Plasma}
+\end{figure}
+
+\subsection{X11 Compatible}
+The WMs compatible with X11 are:
+\begin{itemize}
+    \item i3
+    \item awesome
+\end{itemize}
+And many more, but listing everything can get overwhelming, so I will be sticking with the most well known ones
+
+\subsection{Wayland Compatible}
+Instead, the WMs compatible with Wayland are:
+\begin{itemize}
+    \item Sway
+    \item Hyprland
+    \item Niri
+\end{itemize}
+And a whole lot more. If you have a need so specific that these do not sound appealing to you, you have the necessary knowledge to research them on your own
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{hyprland}
+        \caption{This is a tiling window manager, in this case Hyprland}
+\end{figure}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Status bar}
+For the status bar, the usecases shift from usability to style for the most part. You will not be clicking on the bar very often, and when you do, you don't need a whole lot of specific behavior. Of course if you do you can, but I don't think having a super complicated bar fits the average user's need.
+
+\subsection{X11 Compatible}
+The status bars compatible with X11 are:
+
+
+\begin{itemize}
+    \item Polybar - Highly customizable but resource intensive. May be complex to configure
+    \item i3bar - Very lightweight and fast but with limited built-in modules. Pretty basic appearance
+    \item lemonbar - Extremely lightweight, no built in modules. Requires scripting knowledge to fully configure
+
+\end{itemize}
+
+\subsection{Wayland Compatible}
+The status bars compatible with Wayland are:
+\begin{itemize}
+   \item Waybar - Highly customizable through CSS styling, excellent module ecosystem, great documentation. May use more resources than alternatives
+   \item yambar - Lightweight and efficient, with less intuitive configuration. Smaller community.
+   \item swaybar - Native to sway, very lightweight. Pretty basic appearance
+\end{itemize}
+
+\subsection{Compatible with both}
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{eww}
+        \caption{This is an example configuration using eww}
+\end{figure}
+
+There are a couple of bars that are compatible with both display servers:
+\begin{itemize}
+    \item i3status-rust - Blazing fast and efficient, good selection of built in blocks. Configuration in TOML may feel incredibly boring. Recommended for efficiency while not compromising a lot of features
+    \item eww - Elkowar's Wacky Widgets is not just a bar, but a full widget system. It's ridicolously customizable and it even supports animations. It has a fairly steep learning curve, and may become resource intensive. Completely overkill for a simple status bar
+\end{itemize}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Application launcher}
+Application launchers are, for the most parts, similar to bars. With the difference that you will be launching applications a lot, so choose wisely if you want to prioritize looks or performance
+
+\subsection{X11 Compatible}
+The application launchers compatible with X11 are:
+\begin{itemize}
+    \item Rofi - The most popular and feature rich, with extensive documentation and theming. Can be complex to deeply configure, requires custom theme syntax
+    \item dmenu - Minimal and efficient, highly scriptable, but with a basic appearance
+\end{itemize}
+
+\subsection{Wayland Compatible}
+The application launchers compatible with Wayland are:
+\begin{itemize}
+    \item Rofi-wayland - Rofi's fork for Wayland. All of the same functionalities of the X11 version, but may be lagging behind with updates
+    \item Wofi - Rofi-inspired application launcher for wayland. Similar configuration to Rofi, with CSS theming. May have some bugs
+    \item dmenu-wayland - Direct dmenu port for wayland. Same as dmenu for X11
+\end{itemize}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Terminal emulator}
+Every true Linux user needs his trusty terminal emulator. These are not tied to the display server, so we have a bit more flexibility
+
+\begin{itemize}
+    \item Alacritty - GPU accelerated, very fast, minimalist design with YAML configuration
+    \item Kitty - Also GPU accelerated, built in tabs and splits. Extensive features with ligature support. Python based config. Not the easiest configuration
+    \item Konsole - KDE's default. Feature rich with profile support. Heavily dependant on KDE libraries
+    \item GNOME terminal - GNOME's default. Simple and reliable, profile and theme support. Basic features, heavily dependent on GTK
+    \item Ghostty - Very new GPU accelerated terminal with excellent performance. Native on each platform, sporting fast startup and low latency. Basically a mix of Alacritty and Kitty. Very new, so relatively unstable, with a small community and low documentation. Not much customization yet
+\end{itemize}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Shell}
+This is very niche to customize, since Bash is already powerful and simple enough to do everything.
+
+\begin{itemize}
+    \item Bash - Default on every Linux distro ever. Most compatibility
+    \item Zsh - Apple's shell. I see no reason for using it
+    \item Fish - Sports syntax highlighting and auto suggestion from history. No POSIX
+\end{itemize}
