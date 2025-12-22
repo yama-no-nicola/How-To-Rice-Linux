@@ -2,3 +2,6 @@ images
 *tmp*
 *.log
 *.aux
+*.out
+*.toc
+*example*
