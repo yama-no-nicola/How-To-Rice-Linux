@@ -29,9 +29,19 @@ The first thing we see when we boot into i3 for the first time is the default co
 
 \end{figure}
 
+\vspace{\baselineskip}
+
 After this, there is a similar prompt that makes us choose the \textbf{Mod} key, either the Windows key, or the Alt key. This can be changed later in the config file. The Mod key is a default key that is used to interact with the window manager's functions. For example, \textbf{Mod+Enter} opens a terminal window. This, as well as every other keybind, does not \emph{require} the mod key, but is very useful to have all of our keybinds, both the default and the custom ones, using the Mod key.
 
 \vspace{\baselineskip}
+
+Before we begin doing stuff, we need to set the resolution. To do this, we use xrandr. Just run this in the terminal and you should get the name of the connected displays, and the available resolutions. Then, just run:
+
+\begin{lstlisting}
+xrandr --output <display-name> --mode <resolution> 
+\end{lstlisting}
+
+If you do not have xrandr, install a package called \textbf{autorandr}, it autodetects resolution and refresh rate and sets them. If you want to change them, just run the command mentioned above
 
 \subsubsection{Kitty}
 Now that we know how to open the i3 terminal, we need to change the default terminal to ours of choice, in this case, \textbf{kitty}. To do this, we go inside the config file located in ~/.config/i3/config using our text editor, and change the line
@@ -80,14 +90,6 @@ And comment it out by adding \# before each line. You can also delete it complet
 #}
 \end{lstlisting}
 
-
-\subsubsection{Wallpaper}
-To set a wallpaper we need to configure \textbf{feh}, to do it for us. First of all, get a wallpaper from somewhere and store wherever you like. Now that we have the wallpaper, we just need to autostart feh whenever i3 boots up. We do that by adding this to the i3 config file:
-
-\begin{lstlisting}
-\end{lstlisting}
-
-
 After doing this, we make the default bar polybar by adding this line somewhere inside the i3 config file:
 
 \begin{lstlisting}
@@ -97,8 +99,51 @@ After doing this, we make the default bar polybar by adding this line somewhere 
 \footnote{Here we add the "||" operator, which is OR, so that the shell tries to kill polybar, if it can't find it, it opens it. This is to make sure that every time we reload the session, we no not open another bar}
 Now we just kill the bar with \texttt{killall i3bar} command inside a terminal.
 
-\subsection{Picom}
-Install picom and deal with it %TODO add this
+\subsubsection{Wallpaper}
+To set a wallpaper we need to configure \textbf{feh}, to do it for us. First of all, get a wallpaper from somewhere and store wherever you like. Now that we have the wallpaper, we just need to autostart feh whenever i3 boots up. We do that by adding this to the i3 config file:
 
+\begin{lstlisting}
+exec --no-startup-id feh --bg-scale /path/to/wallpaper
+\end{lstlisting}
+
+
+\subsection{Picom}
+Probably, while doing all of this stuff, you noticed some screen tearing, and the absolute lack of visual effects, like animations or transparency. That's because we did not install a compositor yet. Since we chose Picom, install it with your package manager. After installation, we need the config file, that probably does not exist, so to make sure, we're going to make it. 
+
+\begin{lstlisting}
+$ mkdir -p ~/.config/picom
+$ cp /etc/xdg/picom.conf ~/.config/picom/picom.conf
+\end{lstlisting}
+If that does not exist either, just make it inside the .config/picom directory and copy the default setting from the official documentation.
+Now that we have the configuration file ready to go, add it to the i3 config file:
+\begin{lstlisting}
+    exec --no-startup-id picom
+\end{lstlisting}
+    exec --no-startup-id picom
 \subsubsection{And we're done!}
-With this we have a basic i3 configuration that has custom keybinds, a custom application launcher, a custom terminal emulator, a custom bar, and a wallpaper
+
+\begin{figure}[H]
+
+\centering
+\includegraphics[width=0.60\textwidth]{i3final}
+\caption{The assembled i3 configuration}
+
+\end{figure}
+
+After a quick reboot to check that everything is working fine, we will have a basic i3 configuration that has custom keybinds, a custom application launcher, a custom terminal emulator, a custom bar, and a wallpaper. With a compositor to handle every effect that we can think of. 
+
+\vspace{\baselineskip}
+But of course, we are not really running custom stuff. This is just the scaffolding of our great desktop. We will be adding styling in the next chapter. So, if you have chosen X11 as your display server, feel free to skip the Wayland section ahead. 
+
+\subsection{Wayland with Sway}
+Our pieces will be:
+\begin{itemize}
+    \item Sway as the window manager
+    \item Waybar as the status bar
+    \item Rofi-wayland as the application launcher
+    \item Kitty as the terminal emulator
+    \item Bash as the shell
+    \item swaybg as the wallpaper manager
+\end{itemize}
+
+\subsubsection{Sway config}
