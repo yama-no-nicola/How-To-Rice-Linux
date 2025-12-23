@@ -1,0 +1,104 @@
+\section{Configuration}
+Now that we've chosen our pieces, we need to make them fit together. Here I will illustrate two example configurations: An X11 configuration with \textbf{i3wm}, and a Wayland configuration using \textbf{sway}.
+I will be using Arch linux as the OS on both setups, since is the most customizable OS that I can actually use. If you are using another distribution, just install the same packages with your package manager.
+
+\subsection{X11 with i3wm}
+Our pieces will be:
+\begin{itemize}
+    \item i3 as the window manager
+    \item Picom as the compositor
+    \item Polybar as the status bar
+    \item Rofi as the application launcher
+    \item Kitty as the terminal emulator
+    \item Bash as the shell
+    \item feh as the wallpaper manager
+\end{itemize}
+
+\subsubsection{i3 config}
+If you're not familiar with tiling window managers, these are designed to have all of their behavior controlled from the keyboard with keybinds. I suggest having the \textbf{i3 Reference Card} near, so you can consult it when you don't know what to do.
+
+\vspace{\baselineskip}
+
+The first thing we see when we boot into i3 for the first time is the default config generation prompt.
+
+\begin{figure}[H]
+
+\centering
+\includegraphics[width=0.75\textwidth]{i3confgen}
+\caption{The default config generation prompt}
+
+\end{figure}
+
+After this, there is a similar prompt that makes us choose the \textbf{Mod} key, either the Windows key, or the Alt key. This can be changed later in the config file. The Mod key is a default key that is used to interact with the window manager's functions. For example, \textbf{Mod+Enter} opens a terminal window. This, as well as every other keybind, does not \emph{require} the mod key, but is very useful to have all of our keybinds, both the default and the custom ones, using the Mod key.
+
+\vspace{\baselineskip}
+
+\subsubsection{Kitty}
+Now that we know how to open the i3 terminal, we need to change the default terminal to ours of choice, in this case, \textbf{kitty}. To do this, we go inside the config file located in ~/.config/i3/config using our text editor, and change the line
+\begin{lstlisting}
+    #start a terminal
+    bindsym $mod+Return exec i3-sensible-terminal
+\end{lstlisting}
+to
+\begin{lstlisting}
+    #start a terminal
+    bindsym $mod+Return exec kitty
+\end{lstlisting}
+Now reload the enviroment with \textbf{Mod+Shift+c}. Now whenever you press the keybind for the terminal, it will open a Kitty instance.
+
+After doing this, it'a good idea to change the keybinds to your liking, so that it's easier to change everything
+
+\subsubsection{Rofi}
+Now that we're comfortable with the keybinds, let's change the application launcher. The procedure is the same as the terminal, just change
+
+\begin{lstlisting}
+    #start dmenu (a program launcher)
+    bindsym $mod+d exec --no-startup-id dmenu
+\end{lstlisting}
+to
+\begin{lstlisting}
+    #start dmenu (a program launcher)
+    bindsym $mod+d exec --no-startup-id rofi -show drun
+\end{lstlisting}
+\footnote{Lines beginning with the "\#" symbol are comments and do not affect the behavior of the config file. You can change "start dmenu" with "start rofi" if you desire so}
+
+\subsubsection{Polybar}
+The next step is to change the awful looking i3 bar with Polybar.
+This is a little bit different, since the bar is started automatically and not with a keybind.To change the bar we need to go inside the \textbf{bar\{\}} function:
+
+\begin{lstlisting}
+bar {
+        status_command i3-status
+}
+\end{lstlisting}
+
+And comment it out by adding \# before each line. You can also delete it completely:
+
+\begin{lstlisting}
+#bar {
+#        status_command i3-status
+#}
+\end{lstlisting}
+
+
+\subsubsection{Wallpaper}
+To set a wallpaper we need to configure \textbf{feh}, to do it for us. First of all, get a wallpaper from somewhere and store wherever you like. Now that we have the wallpaper, we just need to autostart feh whenever i3 boots up. We do that by adding this to the i3 config file:
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+After doing this, we make the default bar polybar by adding this line somewhere inside the i3 config file:
+
+\begin{lstlisting}
+    exec_always --no-startup-id killall polybar || polybar
+\end{lstlisting}
+
+\footnote{Here we add the "||" operator, which is OR, so that the shell tries to kill polybar, if it can't find it, it opens it. This is to make sure that every time we reload the session, we no not open another bar}
+Now we just kill the bar with \texttt{killall i3bar} command inside a terminal.
+
+\subsection{Picom}
+Install picom and deal with it %TODO add this
+
+\subsubsection{And we're done!}
+With this we have a basic i3 configuration that has custom keybinds, a custom application launcher, a custom terminal emulator, a custom bar, and a wallpaper

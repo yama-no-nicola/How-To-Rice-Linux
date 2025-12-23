@@ -191,3 +191,41 @@ This is very niche to customize, since Bash is already powerful and simple enoug
     \item Zsh - Apple's shell. I see no reason for using it
     \item Fish - Sports syntax highlighting and auto suggestion from history. No POSIX
 \end{itemize}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Compositors}
+I will not be mentioning Window Managers and Desktop Enviroments that come with a compositor preinstalled, like Hyprland.
+
+\subsection{X11 Compatible}
+\begin{itemize}
+    \item Picom - Lightweight, supports animations, vsync, transparency, blur, and shadows. Can cause tearing in some cases and may be complex to configure advanced stuff
+    \item xcompmanager - Very lightweight with minimal effect. Does not support a lot of features and it's no longer being developed
+    \item Compiz - Notorious for 3D effects, supports many plugins. It's outdated and uses a lot of resources.
+\end{itemize}
+
+\subsection{Wayland Compatible}
+Every Wayland compositor that I know of is also a window manager. See Hyprland, Sway, Niri, and more.
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Wallpaper Managers}
+For the final piece of our basic configuration, let's add a wallpaper
+
+\subsection{X11 Compatible}
+\begin{itemize}
+    \item feh - Minimalist, fast, reliable and easy to use.
+    \item nitrogen - Easy to use with a GUI
+    \item variety - Supports slideshows
+\end{itemize}
+
+\subsection{Wayland Compatible}
+\begin{itemize}
+    \item swaybg - Wayland native, reliable and pretty lightweight
+    \item hyprpaper - Tailored for hyprland
+    \item waypaper - User friendly with a GUI
+    \item swww - Animated wallpaper daemon, very fast due to Rust codebase
+\end{itemize}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
