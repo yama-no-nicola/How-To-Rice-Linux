@@ -147,3 +147,40 @@ Our pieces will be:
 \end{itemize}
 
 \subsubsection{Sway config}
+
+After installing Sway and booting for the first time, we may encounter two problems: The keyboard layout, and the resolution.
+Let's deal with the keys first. You will have to copy the config file from /etc/sway/config to ~/.config/sway/config. We do this with
+\begin{lstlisting}
+$ cp /etc/sway/config ~/.config/sway/config
+\end{lstlisting}
+
+\pagebreak
+
+Now that we have our config file in a local directory, we change the input inside this file from:
+\begin{lstlisting}
+    input type:keyboard{
+            xkb_layout "us"
+        }
+\end{lstlisting}
+To:
+\begin{lstlisting}
+    input type:keyboard{
+            xkb_layout "your_layout"
+        }
+\end{lstlisting}
+
+Now that out keys work, let's fix the resolution with:
+\begin{lstlisting}
+$ swaymsg get-outputs
+\end{lstlisting}
+
+This gives us a list of values. Just input your desired one in
+
+\begin{lstlisting}
+$ swaymsg output<Monitor-Name> res <Desired-Resolution> 
+\end{lstlisting}
+
+Now we have both working keys and the correct screen resolution.
+
+\subsubsection{Kitty}
+Let's set the terminal the same way we did on X11, by changing the keybind
