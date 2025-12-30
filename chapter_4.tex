@@ -1,0 +1,120 @@
+\chapter{Style}
+Now we will be covering some styling options, to make our setup not look like shit. Remember that this may differ depending on your components, so before changing your config, always consult the official documentation for your software.
+
+\section{Terminal}
+Since we will be doing all of our changes with a text editor that lives inside the terminal, it makes sense to customize it first. 
+We will be doing this by changing:
+\begin{itemize}
+    \item Cursor
+    \item Colors
+    \item Font
+    \item Blur \& Transparency
+    \item Scale
+    \item Misc
+\end{itemize}
+
+Everything we will need is inside the configuration file for the terminal emulator, which should already be inside \textbf{~/.config/kitty/kitty.conf}
+
+%CURSOR CONFIG
+\subsection{Cursor}
+Whoever uses the block style cursor is either very old and nostalgic, or a complete psychopath, so we need the I-Beam style.
+%TODO insert image of block and beam here
+To to this we need to change
+\begin{lstlisting}
+    cursor_shape block
+\end{lstlisting}
+To
+\begin{lstlisting}
+    cursor_shape beam
+\end{lstlisting}
+
+%COLOR CONFIG
+\subsection{Color}
+Now that we can actually use the terminal and edit text without dying, we can change the colors. We will be doing the "main" colors first, and the other colors after. So first we need the text color, the background color, and the cursor color.
+This is really simple, it's just a matter of adding a hex code to a line:
+\subsubsection{Main colors}
+\begin{lstlisting}
+        #foreground is the text color
+   foreground #ffffff 
+        #background is the terminal's background color
+   background #000000
+        #cursor is the cursor color, again, what a surpise!
+   cursor #ffffff
+\end{lstlisting}
+Now that our text\footnote{I recommend setting the cursor color the same as the foreground, for visibility reasons, but you do not have to do so} is white and the background is black, we can move on to the other colors
+
+\subsubsection{Secondary colors}
+The terminal now is readable, but is very basic. Let's add some paint to it
+Our terminal of choice has a 16 color palette, with 8 dull colors and 8 bright ones. You can customize the whole palette of the 256 terminal colors, but the basic ones are:
+\begin{itemize}
+        %TODO   check color codes
+    \item Black
+        \begin{lstlisting}
+            color0 #000000
+            color8 #767676
+        \end{lstlisting}
+    \item Red
+        \begin{lstlisting}
+            color1 #cc0403
+            color9 #f2201f
+        \end{lstlisting}
+    \item Green
+        \begin{lstlisting}
+            color2 #cecb00
+            color10 #fffd00
+        \end{lstlisting}
+    \item Yellow
+        \begin{lstlisting}
+            color3 #0d73cc
+            color11 #1a8fff
+        \end{lstlisting}
+\pagebreak
+    \item Blue
+        \begin{lstlisting}
+            color4 #cb1ed1
+            color12 #1a8fff
+        \end{lstlisting}
+    \item Magenta
+        \begin{lstlisting}
+            color5 #0dcdc
+            color13 #f228ff
+        \end{lstlisting}
+    \item Cyan
+        \begin{lstlisting}
+            color6 #0dcdcd
+            color14 #14ffff
+        \end{lstlisting}
+    \item White
+        \begin{lstlisting}
+            color7 #dddddd
+            color15 #ffffff
+        \end{lstlisting}
+\end{itemize}
+These are the default ones, feel free to change them however you see fit
+
+\subsection{Font}
+Changing font is also really simple
+
+\begin{lstlisting}
+        #this is the actual font, in this case, the Ubuntu one
+    font_familiy Adwaita Mono
+        #these are the specific mods
+    bold_font auto
+    italic_font auto
+    bold_italic_font auto
+\end{lstlisting}
+
+\subsection{Blur \& Transparency}
+It's not a real Linux rice if your terminal is opaque. Unless you're going for that vibe, in which case, just skip ahead.
+To change Transparency and Blur just change the homonimous rule:
+\begin{lstlisting}
+        # 1.0 means fully opaque, 0 means fully transparent
+    background_opacity 0.8
+        # 0 means no blur, increase to preference
+    background_blur 4
+\end{lstlisting}
+
+\subsection{Scale}
+You may need to have a bigger or smaller text inside the terminal. For this we will set a default one, and keybinds to increase and decrease it by intervals
+
+\subsection{Misc}
